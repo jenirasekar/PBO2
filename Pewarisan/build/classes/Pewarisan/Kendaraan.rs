@@ -1,0 +1,3 @@
+Pewarisan.Kendaraan
+Pewarisan.DemoKendaraan
+Pewarisan.SepedaMotor

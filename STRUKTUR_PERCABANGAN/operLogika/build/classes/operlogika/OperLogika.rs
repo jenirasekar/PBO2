@@ -1,0 +1,1 @@
+operatorjava.operLogika

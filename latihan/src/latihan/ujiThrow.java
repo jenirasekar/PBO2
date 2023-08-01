@@ -9,7 +9,7 @@ public class ujiThrow {
         }
     }
     public static void main(String[] args) {
-        validasi(17);
+        validasi(19);
         System.out.println("Akhir kode program");
     }
 }

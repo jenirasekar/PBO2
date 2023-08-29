@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adffd8ee-31f3-417a-8403-cd3f8af71c8e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ant.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LatihanGUI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PullDown.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PullDown.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Polymorphisme/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Polymorphisme/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../latihan/src/tugasUK4/ClassString.java" beforeDir="false" afterPath="$PROJECT_DIR$/../latihan/src/tugasUK4/ClassString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LatihanGUI/MenuMakanan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MenuMakanan.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuMakanan.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MenuMakanan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuMakanan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

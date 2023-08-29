@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BelajarPBO/BelajarPBO.iml" filepath="$PROJECT_DIR$/BelajarPBO/BelajarPBO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CRUDJava/CRUDJava.iml" filepath="$PROJECT_DIR$/CRUDJava/CRUDJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Collections/Collections.iml" filepath="$PROJECT_DIR$/Collections/Collections.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FileIO/FileIO.iml" filepath="$PROJECT_DIR$/FileIO/FileIO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LatihanGUI/LatihanGUI.iml" filepath="$PROJECT_DIR$/LatihanGUI/LatihanGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LatihanJava2/LatihanJava2.iml" filepath="$PROJECT_DIR$/LatihanJava2/LatihanJava2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LatihanTipedata/LatihanTipedata.iml" filepath="$PROJECT_DIR$/LatihanTipedata/LatihanTipedata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OperatorJava1/OperatorJava1.iml" filepath="$PROJECT_DIR$/OperatorJava1/OperatorJava1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PBO2.iml" filepath="$PROJECT_DIR$/.idea/PBO2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Pewarisan/Pewarisan.iml" filepath="$PROJECT_DIR$/Pewarisan/Pewarisan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Polymorphisme/Polymorphisme.iml" filepath="$PROJECT_DIR$/Polymorphisme/Polymorphisme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STRUKTUR_PERCABANGAN/STRUKTUR_PERCABANGAN.iml" filepath="$PROJECT_DIR$/STRUKTUR_PERCABANGAN/STRUKTUR_PERCABANGAN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sekapiyu/Sekapiyu.iml" filepath="$PROJECT_DIR$/Sekapiyu/Sekapiyu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/array/array.iml" filepath="$PROJECT_DIR$/array/array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/enkapsulasi/enkapsulasi.iml" filepath="$PROJECT_DIR$/enkapsulasi/enkapsulasi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/latihan/latihan.iml" filepath="$PROJECT_DIR$/latihan/latihan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/looping/looping.iml" filepath="$PROJECT_DIR$/looping/looping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tugasUK/tugasUK.iml" filepath="$PROJECT_DIR$/tugasUK/tugasUK.iml" />
+    </modules>
+  </component>
+</project>

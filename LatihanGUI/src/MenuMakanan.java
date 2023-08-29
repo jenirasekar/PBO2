@@ -43,7 +43,6 @@ public class MenuMakanan extends javax.swing.JFrame {
         tfTotal = new javax.swing.JTextField();
         bClear = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        jLayeredPane4 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -133,15 +132,26 @@ public class MenuMakanan extends javax.swing.JFrame {
             }
         });
 
+        tfSoto.setEnabled(false);
         tfSoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSotoActionPerformed(evt);
             }
         });
 
+        tfRawon.setEnabled(false);
         tfRawon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfRawonActionPerformed(evt);
+            }
+        });
+
+        tfBakso.setEnabled(false);
+
+        tfGudeg.setEnabled(false);
+        tfGudeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfGudegActionPerformed(evt);
             }
         });
 
@@ -152,29 +162,22 @@ public class MenuMakanan extends javax.swing.JFrame {
             }
         });
 
+        tfTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTotalActionPerformed(evt);
+            }
+        });
+
         bClear.setText("Clear");
+        bClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bClearActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Menu Makanan");
 
-        jLabel2.setText("jLabel2");
-
-        jLayeredPane4.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane4Layout = new javax.swing.GroupLayout(jLayeredPane4);
-        jLayeredPane4.setLayout(jLayeredPane4Layout);
-        jLayeredPane4Layout.setHorizontalGroup(
-            jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane4Layout.createSequentialGroup()
-                .addGap(196, 196, 196)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jLayeredPane4Layout.setVerticalGroup(
-            jLayeredPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane4Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 84, Short.MAX_VALUE))
-        );
+        jLabel2.setText("Hitung:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,52 +195,60 @@ public class MenuMakanan extends javax.swing.JFrame {
                             .addComponent(cbGudeg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbBakso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbRawon, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                            .addComponent(cbSoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                            .addComponent(tfSoto)
-                            .addComponent(tfRawon)
-                            .addComponent(tfBakso)
-                            .addComponent(tfGudeg))
+                            .addComponent(cbSoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfRawon, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfSoto, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfBakso, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfGudeg, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(97, 97, 97))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bHitung)
-                            .addComponent(bClear)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLayeredPane4)))
-                .addContainerGap())
+                            .addComponent(bClear)
+                            .addComponent(bHitung))
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbSoto, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfSoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbRawon, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfRawon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbBakso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfBakso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbGudeg, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfGudeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bHitung))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bClear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbSoto, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfSoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbRawon, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfRawon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbBakso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfBakso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cbGudeg, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfGudeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(166, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bHitung)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addComponent(bClear)
+                        .addGap(54, 54, 54))))
         );
 
         pack();
@@ -245,14 +256,14 @@ public class MenuMakanan extends javax.swing.JFrame {
     static final int HARGA_BAKSO = 4000;
     static final int HARGA_RAWON = 6000;
     static final int HARGA_SOTO = 5000;
-    static final int HARGA_GUDEG = 8000;
+    static final int HARGA_GUDEG = 8000;    
     
     private void cbSotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSotoActionPerformed
         // TODO add your handling code here:
         if(cbSoto.isSelected() == true) {
-            tfSoto.setEditable(true);
+            tfSoto.setEnabled(true);
         } else {
-            tfSoto.setEditable(false);
+            tfSoto.setEnabled(false);
             tfSoto.setText("");
         }
     }//GEN-LAST:event_cbSotoActionPerformed
@@ -269,14 +280,14 @@ public class MenuMakanan extends javax.swing.JFrame {
         int jumlahGudeg = 0;
         
         try {
-            jumlahSoto = tfSoto.isEditable() ? Integer.parseInt(tfSoto.getText()) : 0;
+            jumlahSoto = tfSoto.isEnabled() ? Integer.parseInt(tfSoto.getText()) : 0;
         } catch (NumberFormatException nfe){
             System.out.println("Anda bukan memasukkan angka");
         }
         int totalHargaSoto = jumlahSoto * HARGA_SOTO;
 
         try{
-            jumlahRawon = tfRawon.isEditable() ? Integer.parseInt(tfRawon.getText()) : 0;
+            jumlahRawon = tfRawon.isEnabled() ? Integer.parseInt(tfRawon.getText()) : 0;
 
         } catch (NumberFormatException nfe) {
             System.out.println("sd");
@@ -284,7 +295,7 @@ public class MenuMakanan extends javax.swing.JFrame {
         int totalHargaRawon = jumlahRawon * HARGA_RAWON;
 
         try {
-            jumlahBakso = tfBakso.isEditable() ? Integer.parseInt(tfBakso.getText()) : 0;
+            jumlahBakso = tfBakso.isEnabled() ? Integer.parseInt(tfBakso.getText()) : 0;
 
         } catch (NumberFormatException nfe) {
             System.out.println();
@@ -292,10 +303,10 @@ public class MenuMakanan extends javax.swing.JFrame {
         int totalHargaBakso = jumlahBakso * HARGA_BAKSO;
 
         try {
-            jumlahGudeg = tfGudeg.isEditable() ? Integer.parseInt(tfGudeg.getText()) : 0;
+            jumlahGudeg = tfGudeg.isEnabled() ? Integer.parseInt(tfGudeg.getText()) : 0;
 
         } catch (NumberFormatException nfe) {
-            System.out.println();
+            System.out.println("Anda bukan memasukkan angka " + nfe.getMessage());
         }
         int totalHargaGudeg = jumlahGudeg * HARGA_GUDEG;
 
@@ -311,9 +322,9 @@ public class MenuMakanan extends javax.swing.JFrame {
     private void cbRawonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRawonActionPerformed
         // TODO add your handling code here:
         if(cbRawon.isSelected() == true) {
-            tfRawon.setEditable(true);
+            tfRawon.setEnabled(true);
         } else {
-            tfRawon.setEditable(false);
+            tfRawon.setEnabled(false);
             tfRawon.setText("");
         }
     }//GEN-LAST:event_cbRawonActionPerformed
@@ -321,22 +332,34 @@ public class MenuMakanan extends javax.swing.JFrame {
     private void cbBaksoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBaksoActionPerformed
         // TODO add your handling code here:
         if(cbBakso.isSelected() == true) {
-            tfBakso.setEditable(true);
+            tfBakso.setEnabled(true);
         } else {
-            tfRawon.setEditable(false);
-            tfRawon.setText("");
+            tfBakso.setEnabled(false);
+            tfBakso.setText("");
         }
     }//GEN-LAST:event_cbBaksoActionPerformed
 
     private void cbGudegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGudegActionPerformed
         // TODO add your handling code here:
         if(cbGudeg.isSelected() == true) {
-            tfGudeg.setEditable(true);
+            tfGudeg.setEnabled(true);
         } else {
-            tfGudeg.setEditable(false);
+            tfGudeg.setEnabled(false);
             tfGudeg.setText("");
         }
     }//GEN-LAST:event_cbGudegActionPerformed
+
+    private void tfGudegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfGudegActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfGudegActionPerformed
+
+    private void bClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bClearActionPerformed
+
+    private void tfTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -386,7 +409,6 @@ public class MenuMakanan extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
-    private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfBakso;

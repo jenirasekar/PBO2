@@ -323,7 +323,12 @@ public class Karyawan extends javax.swing.JFrame {
 
     private void tbKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbKeluarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
+        Home hm = new Home();
+            hm.setVisible(true);
+         //   hm.pack();
+         //   hm.setLocationRelativeTo(null);
+         //   hm.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
     }//GEN-LAST:event_tbKeluarActionPerformed
 
     private void tbTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTambahActionPerformed
@@ -423,6 +428,12 @@ public class Karyawan extends javax.swing.JFrame {
                 new Karyawan().setVisible(true);
             }
         });
+        
+        Register rg = new Register();
+        rg.setVisible(true);
+        rg.pack();
+        rg.setLocationRelativeTo(null);
+        rg.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

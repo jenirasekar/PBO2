@@ -15,14 +15,45 @@ import java.sql.SQLException;
  * @author ThinkPad T440s
  */
 public class Kota extends javax.swing.JFrame {
+    private void kosongkan_form(){
+        tfIdkota.setText(null);
+        tfNamakota.setText(null);
+    }
 
+    private void tampilkan_data(){
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("ID Kota ");
+        model.addColumn("Nama Kota");
+
+        try{
+            int no = 1;
+            String sql = "SELECT * FROM kota";
+            java.sql.Connection conn = (Connection)konfig.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+
+
+            while(res.next()){
+                model.addRow(new Object[]{no++, res.getString(1),res.getString(2)});
+
+
+            }
+            tabelKota.setModel(model);
+
+
+        }catch (SQLException e){
+            System.out.println("Error :" + e.getMessage());
+        }
+    }
     /**
      * Creates new form Kota
      */
     public Kota() {
         initComponents();
+            tampilkan_data();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,38 +225,6 @@ public class Kota extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void kosongkan_form(){
-        tfIdkota.setText(null);
-        tfNamakota.setText(null);
-    }
-
-    private void tampilkan_data(){
-
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("No");
-        model.addColumn("ID Kota ");
-        model.addColumn("Nama Kota");
-
-        try{
-            int no = 1;
-            String sql = "SELECT * FROM kota";
-            java.sql.Connection conn = (Connection)konfig.configDB();
-            java.sql.Statement stm = conn.createStatement();
-            java.sql.ResultSet res = stm.executeQuery(sql);
-
-
-            while(res.next()){
-                model.addRow(new Object[]{no++, res.getString(1),res.getString(2)});
-
-
-            }
-            tabelKota.setModel(model);
-
-
-        }catch (SQLException e){
-            System.out.println("Error :" + e.getMessage());
-        }
-    }
 
     private void tfIdkotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdkotaActionPerformed
         // TODO add your handling code here:
@@ -294,7 +293,12 @@ public class Kota extends javax.swing.JFrame {
 
     private void tbKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbKeluarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
+        Home hm = new Home();
+            hm.setVisible(true);
+            hm.pack();
+            hm.setLocationRelativeTo(null);
+            hm.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
     }//GEN-LAST:event_tbKeluarActionPerformed
 
     private void tabelKotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelKotaMouseClicked
@@ -340,6 +344,12 @@ public class Kota extends javax.swing.JFrame {
                 new Kota().setVisible(true);
             }
         });
+        
+       Login lg = new Login();
+            lg.setVisible(true);
+            lg.pack();
+            lg.setLocationRelativeTo(null);
+            lg.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

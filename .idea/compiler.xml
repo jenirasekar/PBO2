@@ -6,11 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="laundry" />
         <module name="CRUDJava" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="CRUDJava" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>

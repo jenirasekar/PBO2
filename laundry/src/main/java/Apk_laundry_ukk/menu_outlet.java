@@ -4,17 +4,60 @@
  */
 package Apk_laundry_ukk;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ThinkPad T440s
  */
 public class menu_outlet extends javax.swing.JFrame {
+    private DefaultTableModel model = null;
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
 
     /**
      * Creates new form menu_outlet
      */
     public menu_outlet() {
         initComponents();
+
+        k.connect();
+        refreshTable();
+    }
+
+//    method untuk menampilkan data dalam table
+    public void refreshTable() {
+        model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nama");
+        model.addColumn("Alamat");
+        model.addColumn("No. Telepon");
+        tableOutlet.setModel(model);
+
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM outlet");
+            this.rs = stat.executeQuery();
+            while (rs.next()) {
+                Object[] data = {
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4)
+                };
+                model.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        tfID.setText("");
+        tfNama.setText("");
+        tfAlamat.setText("");
+        tfTelp.setText("");
     }
 
     /**
@@ -36,8 +79,8 @@ public class menu_outlet extends javax.swing.JFrame {
         tfAlamat = new javax.swing.JTextField();
         tfTelp = new javax.swing.JTextField();
         tbInput = new javax.swing.JToggleButton();
-        tfUpdate = new javax.swing.JToggleButton();
-        tfDelete = new javax.swing.JToggleButton();
+        tbUpdate = new javax.swing.JToggleButton();
+        tbDelete = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOutlet = new javax.swing.JTable();
         tbHome = new javax.swing.JToggleButton();
@@ -61,6 +104,7 @@ public class menu_outlet extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("No telp");
 
+        tfID.setEnabled(false);
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
@@ -81,19 +125,19 @@ public class menu_outlet extends javax.swing.JFrame {
             }
         });
 
-        tfUpdate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tfUpdate.setText("UPDATE");
-        tfUpdate.addActionListener(new java.awt.event.ActionListener() {
+        tbUpdate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tbUpdate.setText("UPDATE");
+        tbUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUpdateActionPerformed(evt);
+                tbUpdateActionPerformed(evt);
             }
         });
 
-        tfDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tfDelete.setText("DELETE");
-        tfDelete.addActionListener(new java.awt.event.ActionListener() {
+        tbDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tbDelete.setText("DELETE");
+        tbDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDeleteActionPerformed(evt);
+                tbDeleteActionPerformed(evt);
             }
         });
 
@@ -108,6 +152,11 @@ public class menu_outlet extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableOutlet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableOutletMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableOutlet);
 
         tbHome.setText("Home");
@@ -135,9 +184,9 @@ public class menu_outlet extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tbInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(tfUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(tfDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -174,8 +223,8 @@ public class menu_outlet extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbInput)
-                    .addComponent(tfUpdate)
-                    .addComponent(tfDelete))
+                    .addComponent(tbUpdate)
+                    .addComponent(tbDelete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -193,17 +242,58 @@ public class menu_outlet extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAlamatActionPerformed
 
-    private void tfUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUpdateActionPerformed
+    private void tbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUpdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfUpdateActionPerformed
+        try {
+            this.stat = k.getConn().prepareStatement("UPDATE outlet " + "SET nama=?, alamat=?, tlp=? WHERE id=?");
+            stat.setString(1, tfNama.getText());
+            stat.setString(2, tfAlamat.getText());
+            stat.setString(3, tfTelp.getText());
+            stat.setString(4, tfID.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_tbUpdateActionPerformed
 
-    private void tfDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDeleteActionPerformed
+    private void tbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfDeleteActionPerformed
+        try {
+            this.stat = k.getConn().prepareStatement("DELETE FROM outlet " + "WHERE id=?");
+            stat.setString(1, tfID.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_tbDeleteActionPerformed
 
     private void tbInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbInputActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("INSERT INTO outlet " + "VALUES(?, ?, ?, ?)");
+            stat.setInt(1, 0);
+            stat.setString(2, tfNama.getText());
+            stat.setString(3, tfAlamat.getText());
+            stat.setString(4, tfTelp.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbInputActionPerformed
+
+    private void tableOutletMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableOutletMouseClicked
+        // TODO add your handling code here:
+        tfID.setText(model.getValueAt(tableOutlet.getSelectedRow(), 0).toString());
+        tfNama.setText(model.getValueAt(tableOutlet.getSelectedRow(), 1).toString());
+        tfAlamat.setText(model.getValueAt(tableOutlet.getSelectedRow(), 2).toString());
+        tfTelp.setText(model.getValueAt(tableOutlet.getSelectedRow(), 3).toString());
+    }//GEN-LAST:event_tableOutletMouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,13 +338,13 @@ public class menu_outlet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableOutlet;
+    private javax.swing.JToggleButton tbDelete;
     private javax.swing.JToggleButton tbHome;
     private javax.swing.JToggleButton tbInput;
+    private javax.swing.JToggleButton tbUpdate;
     private javax.swing.JTextField tfAlamat;
-    private javax.swing.JToggleButton tfDelete;
     private javax.swing.JTextField tfID;
     private javax.swing.JTextField tfNama;
     private javax.swing.JTextField tfTelp;
-    private javax.swing.JToggleButton tfUpdate;
     // End of variables declaration//GEN-END:variables
 }

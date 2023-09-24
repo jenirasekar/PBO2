@@ -45,9 +45,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tbInput" min="-2" pref="198" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="tfUpdate" min="-2" pref="201" max="-2" attributes="0"/>
+              <Component id="tbUpdate" min="-2" pref="201" max="-2" attributes="0"/>
               <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Component id="tfDelete" min="-2" pref="200" max="-2" attributes="0"/>
+              <Component id="tbDelete" min="-2" pref="200" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -92,8 +92,8 @@
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tbInput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tbUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tbDelete" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="34" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="110" max="-2" attributes="0"/>
@@ -146,6 +146,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfID">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfIDActionPerformed"/>
       </Events>
@@ -170,7 +173,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbInputActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="tfUpdate">
+    <Component class="javax.swing.JToggleButton" name="tbUpdate">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -178,10 +181,10 @@
         <Property name="text" type="java.lang.String" value="UPDATE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUpdateActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbUpdateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="tfDelete">
+    <Component class="javax.swing.JToggleButton" name="tbDelete">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -189,7 +192,7 @@
         <Property name="text" type="java.lang.String" value="DELETE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDeleteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbDeleteActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -210,6 +213,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableOutletMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

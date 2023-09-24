@@ -4,19 +4,63 @@
  */
 package Apk_laundry_ukk;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ThinkPad T440s
  */
 public class menu_member extends javax.swing.JFrame {
+    private DefaultTableModel model = null;
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
 
     /**
      * Creates new form menu_outlet
      */
     public menu_member() {
         initComponents();
+
+        k.connect();
+        refreshTable();
     }
 
+    //    method untuk menampilkan data dalam table
+    public void refreshTable() {
+        model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nama");
+        model.addColumn("Alamat");
+        model.addColumn("Jenis Kelamin");
+        model.addColumn("No. Telepon");
+        tableMember.setModel(model);
+
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM member");
+            this.rs = stat.executeQuery();
+            while (rs.next()) {
+                Object[] data = {
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                };
+                model.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        tfID.setText("");
+        tfNama.setText("");
+        tfAlamat.setText("");
+        tfTelp.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +107,7 @@ public class menu_member extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("No telp");
 
+        tfID.setEnabled(false);
         tfID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIDActionPerformed(evt);
@@ -110,6 +155,11 @@ public class menu_member extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableMember.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMemberMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableMember);
 
         tbHome.setText("Home");
@@ -208,15 +258,61 @@ public class menu_member extends javax.swing.JFrame {
 
     private void tbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUpdateActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("UPDATE member " + "SET nama=?, alamat=?, jenis_kelamin=?, tlp=?" +
+                    " " +
+                    "WHERE id=?");
+            stat.setString(1, tfNama.getText());
+            stat.setString(2, tfAlamat.getText());
+            stat.setString(3, cbJK.getSelectedItem().toString());
+            stat.setString(4, tfTelp.getText());
+            stat.setString(5, tfID.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbUpdateActionPerformed
 
     private void tbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDeleteActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("DELETE FROM member " + "WHERE id=?");
+            stat.setString(1, tfID.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbDeleteActionPerformed
 
     private void tbInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbInputActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("INSERT INTO member " + "VALUES(?, ?, ?, ?, ?)");
+            stat.setInt(1, 0);
+            stat.setString(2, tfNama.getText());
+            stat.setString(3, tfAlamat.getText());
+            stat.setString(4, cbJK.getSelectedItem().toString());
+            stat.setString(5, tfTelp.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbInputActionPerformed
+
+    private void tableMemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMemberMouseClicked
+        // TODO add your handling code here:
+        tfID.setText(model.getValueAt(tableMember.getSelectedRow(), 0).toString());
+        tfNama.setText(model.getValueAt(tableMember.getSelectedRow(), 1).toString());
+        tfAlamat.setText(model.getValueAt(tableMember.getSelectedRow(), 2).toString());
+        cbJK.setSelectedItem(model.getValueAt(tableMember.getSelectedRow(), 3).toString());
+        tfTelp.setText(model.getValueAt(tableMember.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tableMemberMouseClicked
 
     /**
      * @param args the command line arguments

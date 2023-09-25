@@ -18,6 +18,8 @@ public class menu_outlet extends javax.swing.JFrame {
     private PreparedStatement stat;
     private ResultSet rs;
     koneksi k = new koneksi();
+    private int id_user = 0, id_outlet = 0;
+    private String role = "";
 
     /**
      * Creates new form menu_outlet
@@ -27,6 +29,18 @@ public class menu_outlet extends javax.swing.JFrame {
 
         k.connect();
         refreshTable();
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setId_outlet(int id_outlet) {
+        this.id_outlet = id_outlet;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 //    method untuk menampilkan data dalam table

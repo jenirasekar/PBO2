@@ -18,6 +18,8 @@ public class menu_paket extends javax.swing.JFrame {
     private PreparedStatement stat;
     private ResultSet rs;
     koneksi k = new koneksi();
+    private int id_user = 0, id_outlet = 0;
+    private String role = "";
     /**
      * Creates new form menu_outlet
      */
@@ -28,7 +30,21 @@ public class menu_paket extends javax.swing.JFrame {
         refreshTable();
     }
 
-    public void refreshTable() {
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+        tfIdPaket.setText("" + id_user);
+    }
+
+    public void setId_outlet(int id_outlet) {
+        this.id_outlet = id_outlet;
+        tfIdOutlet.setText("" + id_outlet);
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+        public void refreshTable() {
         model = new DefaultTableModel();
         model.addColumn("ID Paket");
         model.addColumn("ID Outlet");
@@ -168,6 +184,8 @@ public class menu_paket extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("ID Outlet:");
+
+        tfIdOutlet.setEnabled(false);
 
         tfHarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

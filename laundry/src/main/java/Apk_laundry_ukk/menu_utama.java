@@ -4,17 +4,50 @@
  */
 package Apk_laundry_ukk;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ThinkPad T440s
  */
 public class menu_utama extends javax.swing.JFrame {
-
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
+    private int id_user = 0, id_outlet = 0;
+    private String role = "";
     /**
      * Creates new form menu_utama
      */
     public menu_utama() {
         initComponents();
+
+        k.connect();
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+        tfIdUser.setText("" + id_user);
+    }
+
+    public void setId_outlet(int id_outlet) {
+        this.id_outlet = id_outlet;
+        tfIdOutlet.setText("" + id_outlet);
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+        if (role.equals("admin")) {
+            tbTransaksi.setEnabled(true);
+            tbMember.setEnabled(true);
+            tbPaket.setEnabled(true);
+            tbOutlet.setEnabled(true);
+            tbUser.setEnabled(true);
+        } else if (role.equals("kasir")) {
+            tbTransaksi.setEnabled(true);
+            tbMember.setEnabled(true);
+        }
     }
 
     /**
@@ -44,12 +77,21 @@ public class menu_utama extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("ID User:");
 
+        tfIdUser.setEnabled(false);
+
+        tfIdOutlet.setEnabled(false);
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("ID Outlet:");
 
         tbLogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tbLogout.setText("Logout");
         tbLogout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbLogoutActionPerformed(evt);
+            }
+        });
 
         tbTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tbTransaksi.setText("Transaksi");
@@ -197,6 +239,13 @@ public class menu_utama extends javax.swing.JFrame {
     private void tbCetakLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCetakLapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbCetakLapActionPerformed
+
+    private void tbLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbLogoutActionPerformed
+        // TODO add your handling code here:
+        login l = new login();
+        l.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tbLogoutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -259,6 +259,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfIdOutlet">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfHarga">
       <Events>

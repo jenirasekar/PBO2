@@ -91,8 +91,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfIdUser">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfIdOutlet">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -114,6 +120,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbLogoutActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbTransaksi">
       <Properties>

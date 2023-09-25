@@ -4,17 +4,25 @@
  */
 package Apk_laundry_ukk;
 
+import javax.swing.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ThinkPad T440s
  */
 public class login extends javax.swing.JFrame {
-
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
+
+        k.connect();
     }
 
     /**
@@ -92,16 +100,17 @@ public class login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(66, 66, 66)
                 .addComponent(tbMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(19, 19, 19))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
@@ -114,6 +123,34 @@ public class login extends javax.swing.JFrame {
 
     private void tbMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbMasukActionPerformed
         // TODO add your handling code here:
+        int id_user = 0, id_outlet = 0;
+        String role = "";
+
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM user " + "WHERE username=? and password=?");
+            stat.setString(1, tfUsername.getText());
+            stat.setString(2, tfPassword.getText());
+            this.rs = stat.executeQuery();
+
+            while (rs.next()) {
+               id_user = rs.getInt("id");
+               id_outlet =  rs.getInt("id_outlet");
+               role = rs.getString("role");
+            }
+
+            if (role.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Akun tidak ditemukan!");
+            } else {
+                menu_utama mu = new menu_utama();
+                mu.setId_user(id_user);
+                mu.setId_outlet(id_outlet);
+                mu.setRole(role);
+                mu.setVisible(true);
+                this.setVisible(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbMasukActionPerformed
 
     /**

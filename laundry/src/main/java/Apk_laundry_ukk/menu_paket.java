@@ -4,17 +4,61 @@
  */
 package Apk_laundry_ukk;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ThinkPad T440s
  */
 public class menu_paket extends javax.swing.JFrame {
-
+    private DefaultTableModel model = null;
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
     /**
      * Creates new form menu_outlet
      */
     public menu_paket() {
         initComponents();
+
+        k.connect();
+        refreshTable();
+    }
+
+    public void refreshTable() {
+        model = new DefaultTableModel();
+        model.addColumn("ID Paket");
+        model.addColumn("ID Outlet");
+        model.addColumn("Jenis");
+        model.addColumn("Nama paket");
+        model.addColumn("Harga");
+        tablePaket.setModel(model);
+
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM paket");
+            this.rs = stat.executeQuery();
+            while (rs.next()) {
+                Object[] data = {
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                };
+                model.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        tfIdPaket.setText("");
+        tfIdOutlet.setText("");
+        cbJenisPaket.setSelectedItem("");
+        tfNamaPaket.setText("");
+        tfHarga.setText("");
     }
 
     /**
@@ -60,6 +104,7 @@ public class menu_paket extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Harga");
 
+        tfIdPaket.setEnabled(false);
         tfIdPaket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIdPaketActionPerformed(evt);
@@ -107,6 +152,11 @@ public class menu_paket extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePaket.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePaketMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablePaket);
 
         tbHome.setText("Home");
@@ -216,19 +266,63 @@ public class menu_paket extends javax.swing.JFrame {
 
     private void tbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUpdateActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("UPDATE paket " + "SET jenis=?, nama_paket=?, harga=?" + "WHERE " +
+                    "id=?");
+            stat.setString(1, cbJenisPaket.getSelectedItem().toString());
+            stat.setString(2, tfNamaPaket.getText());
+            stat.setString(3, tfHarga.getText());
+            stat.setString(4, tfIdPaket.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbUpdateActionPerformed
 
     private void tbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDeleteActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("DELETE FROM paket " + "WHERE id=?");
+            stat.setString(1, tfIdPaket.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbDeleteActionPerformed
 
     private void tbInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbInputActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("INSERT INTO paket " + "VALUES(?, ?, ?, ?, ?)");
+            stat.setInt(1, 0);
+            stat.setString(2, tfIdOutlet.getText());
+            stat.setString(3, cbJenisPaket.getSelectedItem().toString());
+            stat.setString(4, tfNamaPaket.getText());
+            stat.setString(5, tfHarga.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbInputActionPerformed
 
     private void tfHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHargaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfHargaActionPerformed
+
+    private void tablePaketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePaketMouseClicked
+        // TODO add your handling code here:
+        tfIdPaket.setText(model.getValueAt(tablePaket.getSelectedRow(), 0).toString());
+        tfIdOutlet.setText(model.getValueAt(tablePaket.getSelectedRow(), 1).toString());
+        cbJenisPaket.setSelectedItem(model.getValueAt(tablePaket.getSelectedRow(), 2).toString());
+        tfNamaPaket.setText(model.getValueAt(tablePaket.getSelectedRow(), 3).toString());
+        tfHarga.setText(model.getValueAt(tablePaket.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tablePaketMouseClicked
 
     /**
      * @param args the command line arguments

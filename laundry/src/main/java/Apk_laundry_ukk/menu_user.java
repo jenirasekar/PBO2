@@ -4,17 +4,64 @@
  */
 package Apk_laundry_ukk;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author ThinkPad T440s
  */
 public class menu_user extends javax.swing.JFrame {
-
+    private DefaultTableModel model = null;
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
     /**
      * Creates new form menu_outlet
      */
     public menu_user() {
         initComponents();
+
+        k.connect();
+        refreshTable();
+    }
+
+    public void refreshTable() {
+        model = new DefaultTableModel();
+        model.addColumn("ID User");
+        model.addColumn("Nama");
+        model.addColumn("Username");
+        model.addColumn("Password");
+        model.addColumn("ID Outlet");
+        model.addColumn("Role");
+        tableUser.setModel(model);
+
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM user");
+            this.rs = stat.executeQuery();
+            while (rs.next()) {
+                Object[] data = {
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6)
+                };
+                model.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        tfIdUser.setText("");
+        tfNama.setText("");
+        tfUsername.setText("");
+        tfPassword.setText("");
+        tfIdoutlet.setText("");
+        cbRole.setSelectedItem("");
     }
 
     /**
@@ -65,6 +112,7 @@ public class menu_user extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Password");
 
+        tfIdUser.setEnabled(false);
         tfIdUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfIdUserActionPerformed(evt);
@@ -112,6 +160,11 @@ public class menu_user extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUserMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableUser);
 
         tbHome.setText("Home");
@@ -221,15 +274,63 @@ public class menu_user extends javax.swing.JFrame {
 
     private void tbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUpdateActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("UPDATE user " + "SET nama=?, username=?, password=?, role=?" +
+                    "WHERE " +
+                    "id=?");
+            stat.setString(1, tfNama.getText());
+            stat.setString(2, tfUsername.getText());
+            stat.setString(3, tfPassword.getText());
+            stat.setString(4, cbRole.getSelectedItem().toString());
+            stat.setString(5, tfIdUser.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbUpdateActionPerformed
 
     private void tbDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDeleteActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("DELETE FROM paket " + "WHERE id=?");
+            stat.setString(1, tfIdUser.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbDeleteActionPerformed
 
     private void tbInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbInputActionPerformed
         // TODO add your handling code here:
+        try {
+            this.stat = k.getConn().prepareStatement("INSERT INTO user " + "VALUES(?, ?, ?, ?, ?, ?)");
+            stat.setInt(1, 0);
+            stat.setString(2, tfNama.getText());
+            stat.setString(3, tfUsername.getText());
+            stat.setString(4, tfPassword.getText());
+            stat.setString(5, tfIdoutlet.getText());
+            stat.setString(6, cbRole.getSelectedItem().toString());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbInputActionPerformed
+
+    private void tableUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUserMouseClicked
+        // TODO add your handling code here:
+        tfIdUser.setText(model.getValueAt(tableUser.getSelectedRow(), 0).toString());
+        tfNama.setText(model.getValueAt(tableUser.getSelectedRow(), 1).toString());
+        tfUsername.setText(model.getValueAt(tableUser.getSelectedRow(), 2).toString());
+        tfPassword.setText(model.getValueAt(tableUser.getSelectedRow(), 3).toString());
+        tfIdoutlet.setText(model.getValueAt(tableUser.getSelectedRow(), 4).toString());
+        cbRole.setSelectedItem(model.getValueAt(tableUser.getSelectedRow(), 5).toString());
+    }//GEN-LAST:event_tableUserMouseClicked
 
     /**
      * @param args the command line arguments

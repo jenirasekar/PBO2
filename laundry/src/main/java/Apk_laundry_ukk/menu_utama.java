@@ -218,22 +218,47 @@ public class menu_utama extends javax.swing.JFrame {
 
     private void tbTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTransaksiActionPerformed
         // TODO add your handling code here:
+        menu_transaksi mt = new menu_transaksi();
     }//GEN-LAST:event_tbTransaksiActionPerformed
 
     private void tbMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbMemberActionPerformed
         // TODO add your handling code here:
+        menu_member mm = new menu_member();
+        mm.setId_user(id_user);
+        mm.setId_outlet(id_outlet);
+        mm.setRole(role);
+        mm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tbMemberActionPerformed
 
     private void tbPaketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbPaketActionPerformed
         // TODO add your handling code here:
+        menu_paket mp = new menu_paket();
+        mp.setId_user(id_user);
+        mp.setId_outlet(id_outlet);
+        mp.setRole(role);
+        mp.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tbPaketActionPerformed
 
     private void tbOutletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbOutletActionPerformed
         // TODO add your handling code here:
+        menu_outlet mo = new menu_outlet();
+        mo.setId_user(id_user);
+        mo.setId_outlet(id_outlet);
+        mo.setRole(role);
+        mo.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tbOutletActionPerformed
 
     private void tbUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUserActionPerformed
         // TODO add your handling code here:
+        menu_user mu = new menu_user();
+        mu.setId_user(id_user);
+        mu.setId_outlet(id_outlet);
+        mu.setRole(role);
+        mu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tbUserActionPerformed
 
     private void tbCetakLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCetakLapActionPerformed

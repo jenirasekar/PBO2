@@ -32,7 +32,6 @@ public class menu_user extends javax.swing.JFrame {
 
     public void setId_user(int id_user) {
         this.id_user = id_user;
-        tfIdoutlet.setText("" + id_user);
     }
 
     public void setId_outlet(int id_outlet) {
@@ -183,6 +182,11 @@ public class menu_user extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableUser);
 
         tbHome.setText("Home");
+        tbHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHomeActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Role");
@@ -348,6 +352,16 @@ public class menu_user extends javax.swing.JFrame {
         tfIdoutlet.setText(model.getValueAt(tableUser.getSelectedRow(), 4).toString());
         cbRole.setSelectedItem(model.getValueAt(tableUser.getSelectedRow(), 5).toString());
     }//GEN-LAST:event_tableUserMouseClicked
+
+    private void tbHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHomeActionPerformed
+        // TODO add your handling code here:
+        menu_utama mu = new menu_utama();
+        mu.setId_user(id_user);
+        mu.setId_outlet(id_outlet);
+        mu.setRole(role);
+        mu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tbHomeActionPerformed
 
     /**
      * @param args the command line arguments

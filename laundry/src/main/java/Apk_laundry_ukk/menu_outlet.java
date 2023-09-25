@@ -174,6 +174,11 @@ public class menu_outlet extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableOutlet);
 
         tbHome.setText("Home");
+        tbHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,6 +313,16 @@ public class menu_outlet extends javax.swing.JFrame {
         tfAlamat.setText(model.getValueAt(tableOutlet.getSelectedRow(), 2).toString());
         tfTelp.setText(model.getValueAt(tableOutlet.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_tableOutletMouseClicked
+
+    private void tbHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHomeActionPerformed
+        // TODO add your handling code here:
+        menu_utama mu = new menu_utama();
+        mu.setId_user(id_user);
+        mu.setId_outlet(id_outlet);
+        mu.setRole(role);
+        mu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tbHomeActionPerformed
 
     /**
      * @param args the command line arguments

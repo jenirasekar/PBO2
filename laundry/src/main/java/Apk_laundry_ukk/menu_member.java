@@ -177,6 +177,11 @@ public class menu_member extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableMember);
 
         tbHome.setText("Home");
+        tbHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHomeActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Jenis kelamin");
@@ -327,6 +332,16 @@ public class menu_member extends javax.swing.JFrame {
         cbJK.setSelectedItem(model.getValueAt(tableMember.getSelectedRow(), 3).toString());
         tfTelp.setText(model.getValueAt(tableMember.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_tableMemberMouseClicked
+
+    private void tbHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHomeActionPerformed
+        // TODO add your handling code here:
+        menu_utama mu = new menu_utama();
+        mu.setId_user(id_user);
+        mu.setId_outlet(id_outlet);
+        mu.setRole(role);
+        mu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tbHomeActionPerformed
 
     /**
      * @param args the command line arguments

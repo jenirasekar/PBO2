@@ -3,18 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Apk_laundry_ukk;
-import com.toedter.calendar.JDateChooser;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import com.toedter.calendar.JDateChooser;
-
 /**
  *
  * @author ThinkPad T440s
@@ -23,29 +19,116 @@ public class menu_transaksi extends javax.swing.JFrame {
     koneksi k = new koneksi();
     private int id_user = 0, id_outlet = 0;
     private String role = "";
+    private DefaultTableModel model = null;
+    private PreparedStatement stat;
+    private ResultSet rs;
     /**
      * Creates new form menu_transaksi
      */
     public menu_transaksi() {
         initComponents();
 
-        Date date = new Date();
-        dcTanggal.setDate(date);
-        dcTanggal.setDateFormatString("dd/MM/yyyy");
+        k.connect();
+        refreshTable();
+        refreshComboMember();
+        refreshComboPaket();
     }
 
     public void setId_user(int id_user) {
         this.id_user = id_user;
+        tfIdUser.setText("" + id_user);
     }
 
     public void setId_outlet(int id_outlet) {
         this.id_outlet = id_outlet;
+        tfIdOutlet.setText("" + id_outlet);
     }
 
     public void setRole(String role) {
         this.role = role;
     }
 
+    public void refreshTable() {
+        model = new DefaultTableModel();
+        model.addColumn("ID Transaksi");
+        model.addColumn("Kode Invoice");
+        model.addColumn("ID Member");
+        model.addColumn("Tanggal Transaksi");
+        model.addColumn("Batas Waktu");
+        model.addColumn("Tanggal Bayar");
+        model.addColumn("Biaya Tambahan");
+        model.addColumn("Diskon");
+        model.addColumn("Status");
+        model.addColumn("Dibayar");
+        model.addColumn("ID Paket");
+        model.addColumn("QTY");
+        tableTransaksi.setModel(model);
+
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM transaksi");
+            this.rs = stat.executeQuery();
+            while (rs.next()) {
+                Object[] data = {
+                        rs.getString("id"),
+                        rs.getString("kode_invoice"),
+                        rs.getString("id_member"),
+                        rs.getString("tgl"),
+                        rs.getString("batas_waktu"),
+                        rs.getString("tgl_bayar"),
+                        rs.getString("biaya_tambahan"),
+                        rs.getString("diskon"),
+                        rs.getString("status"),
+                        rs.getString("dibayar"),
+                        rs.getString("id_paket"),
+                        rs.getString("qty")
+                };
+                model.addRow(data);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        tfKeterangan.setText("");
+        tfBiayaTambahan.setText("");
+        tfKuantitas.setText("");
+        tfKodeInvoice.setText("");
+    }
+
+//    mengambil value id dari table member
+    public void refreshComboMember() {
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM member");
+            this.rs = this.stat.executeQuery();
+            while (rs.next()) {
+                cbMember.addItem(rs.getString("id"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+//    mengambil value id dari table paket
+    public void refreshComboPaket() {
+        try {
+            this.stat = k.getConn().prepareStatement("SELECT * FROM paket");
+            this.rs = this.stat.executeQuery();
+            while (rs.next()) {
+                cbPaket.addItem(rs.getString("id") + ":"
+                        + rs.getString("nama_paket") + ":"
+                        + rs.getString("harga"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    //    menghitung pajak
+    public int hitungPajak(int harga) {
+        int pajak = 0;
+        pajak = (int) (harga*0.1);
+
+        return pajak;
+    }
         /**
          * This method is called from within the constructor to initialize the form.
          * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,11 +138,11 @@ public class menu_transaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tbHome = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         tfIdUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tfIdOutlet = new javax.swing.JTextField();
-        tbMenu = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -86,13 +169,16 @@ public class menu_transaksi extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        tfKodeInvoice = new javax.swing.JTextField();
+        dcTanggalBayar = new com.toedter.calendar.JDateChooser();
+        cbStatusTransaksi = new javax.swing.JComboBox<>();
+        cbStatusPembayaran = new javax.swing.JComboBox<>();
+        tbEdit = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableTransaksi = new javax.swing.JTable();
+        tbHome1 = new javax.swing.JToggleButton();
+
+        tbHome.setText("Home");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,10 +191,6 @@ public class menu_transaksi extends javax.swing.JFrame {
         jLabel2.setText("ID Outlet:");
 
         tfIdOutlet.setEnabled(false);
-
-        tbMenu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        tbMenu.setText("Menu");
-        tbMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -170,6 +252,11 @@ public class menu_transaksi extends javax.swing.JFrame {
         tbTambah.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tbTambah.setText("Tambah");
         tbTambah.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbTambahActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -269,25 +356,30 @@ public class menu_transaksi extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setText("Status pembayaran");
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        tfKodeInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                tfKodeInvoiceActionPerformed(evt);
             }
         });
 
-        jDateChooser3.setPreferredSize(new java.awt.Dimension(88, 36));
+        dcTanggalBayar.setPreferredSize(new java.awt.Dimension(88, 36));
 
-        jComboBox4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Proses", "Selesai", "Diambil", " " }));
-        jComboBox4.setPreferredSize(new java.awt.Dimension(72, 36));
+        cbStatusTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbStatusTransaksi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Proses", "Selesai", "Diambil", " " }));
+        cbStatusTransaksi.setPreferredSize(new java.awt.Dimension(72, 36));
 
-        jComboBox5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dibayar", "Belum dibayar", " " }));
-        jComboBox5.setPreferredSize(new java.awt.Dimension(72, 36));
+        cbStatusPembayaran.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbStatusPembayaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dibayar", "Belum dibayar", " " }));
+        cbStatusPembayaran.setPreferredSize(new java.awt.Dimension(72, 36));
 
-        jToggleButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jToggleButton3.setText("Edit");
-        jToggleButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbEdit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tbEdit.setText("Edit");
+        tbEdit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tbEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbEditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -304,14 +396,14 @@ public class menu_transaksi extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbStatusTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel16)
                                 .addGap(22, 22, 22)
-                                .addComponent(jComboBox5, 0, 215, Short.MAX_VALUE))
-                            .addComponent(jTextField6)
-                            .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbStatusPembayaran, 0, 215, Short.MAX_VALUE))
+                            .addComponent(tfKodeInvoice)
+                            .addComponent(dcTanggalBayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tbEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -320,19 +412,19 @@ public class menu_transaksi extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfKodeInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
-                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcTanggalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbStatusTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbStatusPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
 
@@ -349,7 +441,19 @@ public class menu_transaksi extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTransaksiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableTransaksi);
+
+        tbHome1.setText("Home");
+        tbHome1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHome1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -370,7 +474,7 @@ public class menu_transaksi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfIdOutlet, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tbHome1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -382,7 +486,7 @@ public class menu_transaksi extends javax.swing.JFrame {
                     .addComponent(tfIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(tfIdOutlet, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbMenu))
+                    .addComponent(tbHome1))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel4)
                 .addGap(37, 37, 37)
@@ -392,6 +496,7 @@ public class menu_transaksi extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfKeteranganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeteranganActionPerformed
@@ -402,9 +507,77 @@ public class menu_transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfKuantitasActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void tfKodeInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKodeInvoiceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_tfKodeInvoiceActionPerformed
+
+    private void tbHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHome1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbHome1ActionPerformed
+
+    private void tbTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTambahActionPerformed
+        // TODO add your handling code here:
+        String inv = "";
+        Date d = new Date();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        inv = df.format(d);
+        double diskon = Double.parseDouble(cbDiskon.getSelectedItem().toString()) / 100;
+        String[] split = cbPaket.getSelectedItem().toString().split(":");
+        int total = Integer.parseInt(tfKuantitas.getText()) * Integer.parseInt(split[2]);
+        int pajak = hitungPajak(total);
+
+        try {
+            this.stat = k.getConn().prepareStatement("INSERT INTO transaksi " + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
+                    " ?, ?, ?, ?, ?, ?)");
+            stat.setInt(1, 0);
+            stat.setString(2, tfIdOutlet.getText());
+            stat.setString(3, inv);
+            stat.setString(4, cbMember.getSelectedItem().toString());
+            stat.setString(5, df2.format(dcTanggal.getDate()));
+            stat.setString(6, df2.format(dcBatasWaktu.getDate()));
+            stat.setString(7, null);
+            stat.setString(8, tfBiayaTambahan.getText());
+            stat.setDouble(9, diskon);
+            stat.setInt(10, pajak);
+            stat.setString(11, "Proses");
+            stat.setString(12, "Belum dibayar");
+            stat.setString(13, tfIdUser.getText());
+            stat.setString(14, split[0]);
+            stat.setInt(15, Integer.parseInt(tfKuantitas.getText()));
+            stat.setString(16, tfKeterangan.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }//GEN-LAST:event_tbTambahActionPerformed
+
+    private void tbEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEditActionPerformed
+        // TODO add your handling code here:
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            this.stat = k.getConn().prepareStatement("UPDATE transaksi " + "SET tgl_bayar=?, status=?, dibayar=?" +
+                    "WHERE kode_invoice=?");
+            stat.setString(1, df2.format(dcTanggalBayar.getDate()));
+            stat.setString(2, cbStatusTransaksi.getSelectedItem().toString());
+            stat.setString(3, cbStatusPembayaran.getSelectedItem().toString());
+            stat.setString(4, tfKodeInvoice.getText());
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+            refreshTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_tbEditActionPerformed
+
+    private void tableTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTransaksiMouseClicked
+        // TODO add your handling code here:
+        tfKodeInvoice.setText(model.getValueAt(tableTransaksi.getSelectedRow(), 1).toString());
+
+    }//GEN-LAST:event_tableTransaksiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -446,11 +619,11 @@ public class menu_transaksi extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbDiskon;
     private javax.swing.JComboBox<String> cbMember;
     private javax.swing.JComboBox<String> cbPaket;
+    private javax.swing.JComboBox<String> cbStatusPembayaran;
+    private javax.swing.JComboBox<String> cbStatusTransaksi;
     private com.toedter.calendar.JDateChooser dcBatasWaktu;
     private com.toedter.calendar.JDateChooser dcTanggal;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
+    private com.toedter.calendar.JDateChooser dcTanggalBayar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -471,15 +644,16 @@ public class menu_transaksi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JTable tableTransaksi;
-    private javax.swing.JToggleButton tbMenu;
+    private javax.swing.JToggleButton tbEdit;
+    private javax.swing.JToggleButton tbHome;
+    private javax.swing.JToggleButton tbHome1;
     private javax.swing.JToggleButton tbTambah;
     private javax.swing.JTextField tfBiayaTambahan;
     private javax.swing.JTextField tfIdOutlet;
     private javax.swing.JTextField tfIdUser;
     private javax.swing.JTextField tfKeterangan;
+    private javax.swing.JTextField tfKodeInvoice;
     private javax.swing.JTextField tfKuantitas;
     // End of variables declaration//GEN-END:variables
 }

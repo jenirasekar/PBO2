@@ -2,8 +2,18 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="qncentury-nexus-thirdparty" />
+      <option name="name" value="qncentury-nexus" />
+      <option name="url" value="http://maven.qncentury.com/nexus/content/repositories/thirdparty" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="repo-maven2" />
+      <option name="name" value="repo-maven2" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>

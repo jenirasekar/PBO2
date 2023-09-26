@@ -4,8 +4,16 @@
  */
 package Apk_laundry_ukk;
 
+import javax.swing.*;
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
+
 
 /**
  *
@@ -268,6 +276,13 @@ public class menu_utama extends javax.swing.JFrame {
 
     private void tbCetakLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCetakLapActionPerformed
         // TODO add your handling code here:
+        try {
+            File lap = new File("C:/PBO2/laundry/src/main/java/laporan/laporan_transaksi.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(lap.getPath(), null, k.getConn());
+            JasperViewer.viewReport(jp, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_tbCetakLapActionPerformed
 
     private void tbLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbLogoutActionPerformed

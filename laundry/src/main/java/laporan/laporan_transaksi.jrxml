@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
-			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			  xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11f3fd4a-8195-4af9-ac44-76d7e4a7bb7a">
-	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11f3fd4a-8195-4af9-ac44-76d7e4a7bb7a">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="198"/>
+	<property name="ireport.y" value="65"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM transaksi]]>
 	</queryString>
@@ -77,6 +75,12 @@
 		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="42" height="20" uuid="8b6c4572-2b34-44d7-b8e6-42674feb02f9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -84,6 +88,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="42" y="0" width="42" height="20" uuid="6230be83-bd04-4205-98c6-dc9d6803c669"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -91,6 +101,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="84" y="0" width="42" height="20" uuid="5b442ed8-f6ef-462a-a128-0f5f4a6a5c73"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -98,6 +114,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="126" y="0" width="42" height="20" uuid="0504c805-9b8c-45eb-bf86-42744196a338"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -105,6 +127,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="168" y="0" width="42" height="20" uuid="fb85aef6-565b-428e-b686-b2b69ccf2ea4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -112,6 +140,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="210" y="0" width="42" height="20" uuid="44c9af2f-63b9-442b-94d1-b45b64173e8b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -119,6 +153,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="252" y="0" width="42" height="20" uuid="b32c9f18-fd32-42e5-916a-5b37a5cde32c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -126,6 +166,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="294" y="0" width="42" height="20" uuid="49588919-edcf-41df-b1ac-c72fc2ae68b6"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -133,6 +179,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="336" y="0" width="42" height="20" uuid="8f463756-2a24-4456-b93b-115dcbfe1a1b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -140,6 +192,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="378" y="0" width="42" height="20" uuid="412165c7-258e-446f-9bd4-16e3f5293145"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -147,6 +205,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="420" y="0" width="42" height="20" uuid="af426c99-d3a8-422b-8701-668368cc9a2e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -154,6 +218,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="462" y="0" width="42" height="20" uuid="6d646dce-6c3d-4688-a647-cd37b4f65711"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -161,6 +231,12 @@
 			</staticText>
 			<staticText>
 				<reportElement x="504" y="0" width="51" height="20" uuid="e297d94b-23d8-4632-8522-eb6acf0a7ec1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -172,6 +248,12 @@
 		<band height="125" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="42" height="20" uuid="2513d3a2-f37f-46a5-b081-0d3a07f0b612"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -179,6 +261,12 @@
 			</textField>
 			<textField>
 				<reportElement x="42" y="0" width="42" height="20" uuid="dd181637-0ba9-4f5c-afd3-bb3f2bbb9464"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -186,6 +274,12 @@
 			</textField>
 			<textField>
 				<reportElement x="84" y="0" width="42" height="20" uuid="114e3e78-7573-4da7-82d4-a136e88ab222"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -193,6 +287,12 @@
 			</textField>
 			<textField>
 				<reportElement x="126" y="0" width="42" height="20" uuid="b7557651-0882-4760-9978-ca49707871d2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -200,6 +300,12 @@
 			</textField>
 			<textField>
 				<reportElement x="168" y="0" width="42" height="20" uuid="46245958-c975-4201-9c37-8c90cd3a2b6c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -207,6 +313,12 @@
 			</textField>
 			<textField>
 				<reportElement x="210" y="0" width="42" height="20" uuid="7ff3b0e9-7b14-4305-b0d5-d967197b1310"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -214,6 +326,12 @@
 			</textField>
 			<textField>
 				<reportElement x="252" y="0" width="42" height="20" uuid="1613aa65-0140-4abd-bfa5-a131577bab1e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -221,6 +339,12 @@
 			</textField>
 			<textField>
 				<reportElement x="294" y="0" width="42" height="20" uuid="09c3456e-8a3c-4511-bec8-dd80ed844059"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -228,6 +352,12 @@
 			</textField>
 			<textField>
 				<reportElement x="336" y="0" width="42" height="20" uuid="074c5885-e460-4e72-9672-dab4755d5f1c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -235,6 +365,12 @@
 			</textField>
 			<textField>
 				<reportElement x="378" y="0" width="42" height="20" uuid="85fd61fc-429a-439e-a7e7-051c4c8ed4bc"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -242,6 +378,12 @@
 			</textField>
 			<textField>
 				<reportElement x="420" y="0" width="42" height="20" uuid="4914f0d1-a938-456c-bc0f-8b2670940a93"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -249,6 +391,12 @@
 			</textField>
 			<textField>
 				<reportElement x="462" y="0" width="42" height="20" uuid="22db16b7-a24a-4f12-97a8-73df59e50642"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -256,6 +404,12 @@
 			</textField>
 			<textField>
 				<reportElement x="504" y="0" width="51" height="20" uuid="9839a5a0-2219-4832-b063-32e9f2583268"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>

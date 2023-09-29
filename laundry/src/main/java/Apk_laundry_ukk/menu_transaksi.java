@@ -513,6 +513,12 @@ public class menu_transaksi extends javax.swing.JFrame {
 
     private void tbHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHome1ActionPerformed
         // TODO add your handling code here:
+        menu_utama mu = new menu_utama();
+        mu.setId_user(id_user);
+        mu.setId_outlet(id_outlet);
+        mu.setRole(role);
+        mu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tbHome1ActionPerformed
 
     private void tbTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTambahActionPerformed

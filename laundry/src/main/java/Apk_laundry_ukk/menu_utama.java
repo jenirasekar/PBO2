@@ -5,7 +5,7 @@
 package Apk_laundry_ukk;
 
 import javax.swing.*;
-import java.io.File;
+import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import net.sf.jasperreports.engine.JRException;
@@ -277,8 +277,8 @@ public class menu_utama extends javax.swing.JFrame {
     private void tbCetakLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCetakLapActionPerformed
         // TODO add your handling code here:
         try {
-            File lap = new File("C:/PBO2/laundry/src/main/java/laporan/laporan_transaksi.jasper");
-            JasperPrint jp = JasperFillManager.fillReport(lap.getPath(), null, k.getConn());
+            URL resource = getClass().getClassLoader().getResource("laporan/laporan_transaksi.jasper");
+            JasperPrint jp = JasperFillManager.fillReport(resource.getPath(), null, k.getConn());
             JasperViewer.viewReport(jp, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
